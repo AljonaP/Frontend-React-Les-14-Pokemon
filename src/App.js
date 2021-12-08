@@ -7,7 +7,7 @@ import Pokemon from "./components/Pokemon";
 function App() {
 
     const [pokemonData, setPokemonData] = useState('');
-    // const [endPoint, setEndPoint] = useState(`https://pokeapi.co/api/v2/pokemon/jigglypuff`);
+    const [endPoint, setEndPoint] = useState(`https://pokeapi.co/api/v2/pokemon/jigglypuff`);
     // const [endPoint, setEndPoint] = useState(`https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20`);
 
 
