@@ -27,7 +27,13 @@ import axios from "axios";
             {pokemonData && <>
                 <h3>{pokemonData.name}</h3>
                 <img src={pokemonData.sprites.front_default} alt="jigglypuff-image"/>
+                <h4>Weight</h4>
+                {pokemonData.weight}
 
+                <h4>Moves</h4>
+                {pokemonData.moves.length}
+
+                <h4>Abilities</h4>
                 {pokemonData.abilities.map((pokemon) => {
                     return (
                         <li>{pokemon.ability.name}</li>)
