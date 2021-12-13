@@ -1,7 +1,14 @@
 import axios from "axios";
 import './App.css';
 import React, {useState, useEffect} from "react";
-import Pokemon from "./components/Pokemon";
+import Pokemon from "./components/Pokemon/Pokemon";
+import Button from "./components/Button/Button"
+import './components/Pokemon/Pokemon.css';
+import logo from './assets/logo.png'
+
+////////////
+//// build
+
 
 
 function App() {
@@ -9,7 +16,6 @@ function App() {
     const [pokemonData, setPokemonData] = useState('');
     // const [endPoint, setEndPoint] = useState(`https://pokeapi.co/api/v2/pokemon/jigglypuff`);
     const [endPoint, setEndPoint] = useState(`https://pokeapi.co/api/v2/pokemon`);
-
 
     useEffect(() => {
 
@@ -19,6 +25,8 @@ function App() {
             const result = await axios.get(endPoint)
             console.log(result.data);
             setPokemonData(result.data);
+            console.log(endPoint)
+            console.log(endPoint ==='https://pokeapi.co/api/v2/pokemon?offset=20&limit=20')
         } catch (e) {
             console.error(e);
         }
@@ -28,23 +36,28 @@ function App() {
 
 }, [endPoint])
 
-  return (
-      // <Pokemon endpoint={endPoint}/>
-      <div>
-          <button type="button" onClick={() => setEndPoint(pokemonData.previous)}>Vorige</button>
-          <button type="button" onClick={() => setEndPoint(pokemonData.next)}>Volgende</button>
+    return (
+        // <Pokemon endpoint={endPoint}/>
+        <div className="container">
+            <img src={logo} alt="pokemon-logo" className="logo"/>
+            <span className="buttons">
+                <Button type="button" nameOfButton="Vorige" onClick={() => setEndPoint(pokemonData.previous)} onDisabled={(endPoint ==='https://pokeapi.co/api/v2/pokemon?offset=20&limit=20') ? false : true}   />
 
+                <Button type="button" nameOfButton="Volgende" onClick={() => setEndPoint(pokemonData.next)} />
+            </span>
 
-          {pokemonData && <>
-              {pokemonData.results.map((pokemon) => {
-                  return (
-                      <Pokemon key={pokemon.name} endpoint={pokemon.url} />
-                  )
-              })}
-          </>}
-      </div>
+            <div className="pokemon-cards">
+                {pokemonData && <>
+                    {pokemonData.results.map((pokemon) => {
+                        return (
+                            <Pokemon key={pokemon.name} endpoint={pokemon.url}/>
+                        )
+                    })}
+                </>}
+            </div>
+        </div>
 
-  );
+    );
 }
 
 export default App;

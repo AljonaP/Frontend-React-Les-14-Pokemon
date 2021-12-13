@@ -23,20 +23,23 @@ import axios from "axios";
     }, [])
 
     return (
-        <div>
+        <div className="pokemon-container">
             {pokemonData && <>
                 <h3>{pokemonData.name}</h3>
                 <img src={pokemonData.sprites.front_default} alt="jigglypuff-image"/>
-                <h4>Weight</h4>
-                {pokemonData.weight}
-
-                <h4>Moves</h4>
+                <h4 className="moves">Moves:</h4>
                 {pokemonData.moves.length}
+                <span className="box">
+                    <h4>Weight:</h4>
+                    {pokemonData.weight}
+                </span>
 
-                <h4>Abilities</h4>
+
+
+                <h4>Abilities:</h4>
                 {pokemonData.abilities.map((pokemon) => {
                     return (
-                        <li>{pokemon.ability.name}</li>)
+                        <li className="ability">{pokemon.ability.name}</li>)
                 })}
             </>}
         </div>
