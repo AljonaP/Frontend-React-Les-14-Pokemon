@@ -15,7 +15,7 @@ function App() {
 
     const [pokemonData, setPokemonData] = useState('');
     // const [endPoint, setEndPoint] = useState(`https://pokeapi.co/api/v2/pokemon/jigglypuff`);
-    const [endPoint, setEndPoint] = useState(`https://pokeapi.co/api/v2/pokemon`);
+    const [endPoint, setEndPoint] = useState(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=20`);
 
     useEffect(() => {
 
@@ -26,7 +26,7 @@ function App() {
             console.log(result.data);
             setPokemonData(result.data);
             console.log(endPoint)
-            console.log(endPoint ==='https://pokeapi.co/api/v2/pokemon?offset=20&limit=20')
+
         } catch (e) {
             console.error(e);
         }
@@ -40,10 +40,9 @@ function App() {
         // <Pokemon endpoint={endPoint}/>
         <div className="container">
             <img src={logo} alt="pokemon-logo" className="logo"/>
-            <span className="buttons">
-                <Button type="button" nameOfButton="Vorige" onClick={() => setEndPoint(pokemonData.previous)} onDisabled={(endPoint ==='https://pokeapi.co/api/v2/pokemon?offset=20&limit=20') ? false : true}   />
-
-                <Button type="button" nameOfButton="Volgende" onClick={() => setEndPoint(pokemonData.next)} />
+            <span>
+                <Button type="button" className="buttons" nameOfButton="Vorige" onClick={() => setEndPoint(pokemonData.previous)} onDisabled={endPoint === 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=20'}/>
+                <Button type="button" className="buttons" nameOfButton="Volgende" onClick={() => setEndPoint(pokemonData.next)} />
             </span>
 
             <div className="pokemon-cards">

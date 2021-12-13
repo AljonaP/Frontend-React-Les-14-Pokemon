@@ -20,11 +20,9 @@ body {
     display: grid;
     padding: 30px;
     margin: 20px;
-    column-gap: 16px;
-    row-gap: 16px;
+    grid-gap: 16px;
 
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(4, 500px);
     grid-template-areas:
     "a a a a a"
     "b b b b b"
