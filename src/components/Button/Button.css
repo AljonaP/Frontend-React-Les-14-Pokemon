@@ -1,10 +1,18 @@
 .buttons {
     color: white;
     border: 3px solid #113c6b;
+    border-radius: 3px;
     background-color: #10519b;
-    padding: 20px;
-
-
+    padding: 10px 2px;
+    margin: 4px;
+    width: 100px;
 }
+
+.button[disabled] {
+    background-color: yellow;
+}
+
+
+
 
 /* background-color: #9e9e9d; */

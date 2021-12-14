@@ -28,8 +28,8 @@ import axios from "axios";
                 <h3>{pokemonData.name}</h3>
                 <img src={pokemonData.sprites.front_default} alt="jigglypuff-image"/>
                 <div className="weight-moves">
-                    <h4 className="moves">Moves:<span className="light">{pokemonData.moves.length}</span></h4>
-                    <h4>Weight:<span className="light">{pokemonData.weight}</span></h4>
+                    <h4 className="moves">Moves: <span className="light">{pokemonData.moves.length}</span></h4>
+                    <h4>Weight: <span className="light">{pokemonData.weight}</span></h4>
                 </div>
 
                 <h4>Abilities:</h4>
