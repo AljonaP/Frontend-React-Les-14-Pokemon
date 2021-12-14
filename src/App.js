@@ -7,43 +7,47 @@ import Button from "./components/Button/Button"
 import './components/Pokemon/Pokemon.css';
 import logo from './assets/logo.png'
 
-////////////
-//// build
-
-
 
 function App() {
 
     const [pokemonData, setPokemonData] = useState('');
     // const [endPoint, setEndPoint] = useState(`https://pokeapi.co/api/v2/pokemon/jigglypuff`);
     const [endPoint, setEndPoint] = useState(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=20`);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
 
 
-    async function fetchData() {
-        try {
-            const result = await axios.get(endPoint)
-            console.log(result.data);
-            setPokemonData(result.data);
-            console.log(endPoint)
+        async function fetchData() {
+            setLoading(true);
 
-        } catch (e) {
-            console.error(e);
+            try {
+                const result = await axios.get(endPoint)
+                console.log(result.data);
+                setPokemonData(result.data);
+                console.log(endPoint)
+
+            } catch (e) {
+                console.error(e);
+            }
+            setLoading(false);
         }
-    }
 
-    fetchData()
+        fetchData()
 
-}, [endPoint])
+    }, [endPoint])
+    if (loading) return `loading...`
 
     return (
         // <Pokemon endpoint={endPoint}/>
         <div className="container">
             <img src={logo} alt="pokemon-logo" className="logo"/>
             <span>
-                <Button type="button" className="buttons" nameOfButton="Vorige" onClick={() => setEndPoint(pokemonData.previous)} onDisabled={endPoint === 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=20'}/>
-                <Button type="button" className="buttons" nameOfButton="Volgende" onClick={() => setEndPoint(pokemonData.next)} />
+                <Button type="button" className="buttons" nameOfButton="Vorige"
+                        onClick={() => setEndPoint(pokemonData.previous)}
+                        onDisabled={endPoint === 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=20'}/>
+                <Button type="button" className="buttons" nameOfButton="Volgende"
+                        onClick={() => setEndPoint(pokemonData.next)}/>
             </span>
 
             <div className="pokemon-cards">
